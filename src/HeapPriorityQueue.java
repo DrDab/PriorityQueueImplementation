@@ -64,15 +64,34 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     // If the queue is empty, throws a NoSuchElementException.
     public E remove()
     {
-        // TO DO: Clyde
-        return null;
+        if(size = 0) throw new NoSuchElementException();         
+        E result = elementData[1];
+        elementData[1] = elementData[size];
+        elementData[size] = null;
+        size--;
+        int index = 1; 
+        boolean found = false;
+        while(!found && hasLeftChild(index)){//keeps bubbling down until in order/already at end of heap
+            int left = leftChild(index);
+            int right = rightChild(index);
+            int child = left;
+            if(right <= size && elementData[right].compareTo(elementData[left]) < 0){//selects smaller child to compare to node
+                child = right;          
+            }      
+            if(elementData[index].compareTo(elementData[child]) > 0) { //bubbles down if not in order and changes index to check next children
+                swap(elementData, index, child);
+                index = child;
+            } else { 
+                found = true; //proper location found
+           
+        }       
+        return result;       
     }
 
     // Returns the number of elements in the queue.
     public int size()
-    {
-        // TO DO: Clyde
-        return -69;
+    {        
+        return size;
     }
 
     // Returns a string representation of this queue, such as "[10, 20, 30]";
