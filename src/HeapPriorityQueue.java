@@ -18,6 +18,8 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     }
 
     // Adds the given element to this queue.
+    // by: Victor
+    // time complexity: O(log N)
     public void add(E value)
     {
         if (size == elementData.length - 1)
@@ -47,6 +49,8 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     }
 
     // Returns true if there are no elements in this queue.
+    // by: Jacob
+    // time complexity: O(1)
     public boolean isEmpty()
     {
         return size == 0;
@@ -54,6 +58,8 @@ public class HeapPriorityQueue<E extends Comparable<E>>
 
     // Returns the minimum value in the queue without modifying the queue.
     // If the queue is empty, throws a NoSuchElementException.
+    // by: Jacob
+    // time complexity: O(1)
     public E peek()
     {
         if (isEmpty()) throw new NoSuchElementException();
@@ -62,6 +68,8 @@ public class HeapPriorityQueue<E extends Comparable<E>>
 
     // Removes and returns the minimum value in the queue.
     // If the queue is empty, throws a NoSuchElementException.
+    // by: Clyde
+    // time complexity: O(log N)
     public E remove()
     {
         if(size == 0) throw new NoSuchElementException();
@@ -89,6 +97,8 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     }
 
     // Returns the number of elements in the queue.
+    // by: Clyde
+    // time complexity: O(1)
     public int size()
     {        
         return size;
@@ -111,18 +121,24 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     }
 
     // helpers for navigating indexes up/down the tree
+    // by: Victor
+    // time complexity: O(1)
     private int parent(int index)
     {
         return index / 2;
     }
 
     // returns index of left child of given index
+    // by: Clyde
+    // time complexity: O(1)
     private int leftChild(int index)
     {
         return 2 * index;
     }
 
     // returns index of right child of given index
+    // by: Clyde
+    // time complexity: O(1)
     private int rightChild(int index)
     {
         return (2 * index) + 1;
@@ -130,24 +146,32 @@ public class HeapPriorityQueue<E extends Comparable<E>>
 
     // returns true if the node at the given index has a parent (is not the
     // root)
+    // by: Jacob
+    // time complexity: O(1)
     private boolean hasParent(int index)
     {
         return index > 1;
     }
 
     // returns true if the node at the given index has a non-empty left child
+    // by: Victor
+    // time complexity: O(1)
     private boolean hasLeftChild(int index)
     {
         return leftChild(index) <= size;
     }
 
     // returns true if the node at the given index has a non-empty right child
+    // by: Victor
+    // time complexity: O(1)
     private boolean hasRightChild(int index)
     {
         return rightChild(index) <= size;
     }
 
     // switches the values at the two given indexes of the given array
+    // by: Clyde
+    // time complexity: O(1)
     private void swap(E[] a, int index1, int index2)
     {
         // TO DO
