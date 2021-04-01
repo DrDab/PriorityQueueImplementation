@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 // Implements a priority queue of comparable objects using a
 // min-heap represented as an array.
@@ -48,30 +49,29 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     // Returns true if there are no elements in this queue.
     public boolean isEmpty()
     {
-        // TO DO: Jacob
-        return false;
+        return size == 0;
     }
 
     // Returns the minimum value in the queue without modifying the queue.
     // If the queue is empty, throws a NoSuchElementException.
     public E peek()
     {
-        // TO DO: Jacob
-        return null;
+        if (isEmpty()) throw new NoSuchElementException();
+        return elementData[1];
     }
 
     // Removes and returns the minimum value in the queue.
     // If the queue is empty, throws a NoSuchElementException.
     public E remove()
     {
-        if(size = 0) throw new NoSuchElementException();         
+        if(size == 0) throw new NoSuchElementException();
         E result = elementData[1];
         elementData[1] = elementData[size];
         elementData[size] = null;
         size--;
         int index = 1; 
         boolean found = false;
-        while(!found && hasLeftChild(index)){//keeps bubbling down until in order/already at end of heap
+        while(!found && hasLeftChild(index)) {//keeps bubbling down until in order/already at end of heap
             int left = leftChild(index);
             int right = rightChild(index);
             int child = left;
@@ -81,9 +81,9 @@ public class HeapPriorityQueue<E extends Comparable<E>>
             if(elementData[index].compareTo(elementData[child]) > 0) { //bubbles down if not in order and changes index to check next children
                 swap(elementData, index, child);
                 index = child;
-            } else { 
+            } else {
                 found = true; //proper location found
-           
+            }
         }       
         return result;       
     }
@@ -98,13 +98,13 @@ public class HeapPriorityQueue<E extends Comparable<E>>
     // The elements are not guaranteed to be listed in sorted order.
     public String toString()
     {
-        String result = "[";
+        StringBuilder result = new StringBuilder("[");
         if (!isEmpty())
         {
-            result += elementData[1];
+            result.append(elementData[1]);
             for (int i = 2; i <= size; i++)
             {
-                result += ", " + elementData[i];
+                result.append(", ").append(elementData[i]);
             }
         }
         return result + "]";
